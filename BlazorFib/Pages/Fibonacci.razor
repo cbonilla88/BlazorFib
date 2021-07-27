@@ -1,0 +1,28 @@
+﻿@page "/fibonacci"
+
+<h1>Fibonacci Test</h1>
+
+<p role="status">Time 5x Fib(33): @totalMilliseconds (ms)</p>
+
+<button class="btn btn-primary" @onclick="DoFib">Run test</button>
+
+@code {
+    private int totalMilliseconds = 0;
+
+    public static int Fib(int n)
+    {
+        if ((n == 1) || (n == 2))
+            return 1;
+        else
+            return Fib(n - 1) + Fib(n - 2);
+    }
+
+    private void DoFib()
+    {
+        var startDateTime = DateTime.Now;
+        var result = 0;
+        for (var i = 0; i < 5; i++)
+            result = Fib(33);
+        totalMilliseconds = (int)(DateTime.Now - startDateTime).TotalMilliseconds;
+    }
+}
